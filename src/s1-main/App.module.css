@@ -1,0 +1,20 @@
+.App {
+    --header_height: 60px;
+    padding-top: 100px;
+}
+
+.hw {
+padding: 20px;
+border-top: 1px solid #d9d9d9;
+border-bottom: 1px solid #d9d9d9;
+/* width: 1280px; */
+/* height: 100vh; */
+}
+
+.hwTitle {
+font-family: "Montserrat", sans-serif;
+font-weight: 600;
+font-size: 22px;
+color: #000;
+padding-left: 20px;
+}
