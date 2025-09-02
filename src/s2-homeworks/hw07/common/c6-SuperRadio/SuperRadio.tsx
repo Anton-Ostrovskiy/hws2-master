@@ -36,6 +36,10 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         // делают студенты
+        if (onChangeOption) {
+            const selectedId = Number(e.currentTarget.value)
+            onChangeOption(selectedId)
+        }
     }
 
     const finalRadioClassName = s.radio + (className ? ' ' + className : '')
@@ -43,25 +47,28 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
 
     const mappedOptions: any[] = options
         ? options.map((o) => (
-              <label key={name + '-' + o.id} className={s.label}>
-                  <input
-                      id={id + '-input-' + o.id}
-                      className={finalRadioClassName}
-                      type={'radio'}
-                      // name, checked, value делают студенты
+            <label key={name + '-' + o.id} className={s.label}>
+                <input
+                    id={id + '-input-' + o.id}
+                    className={finalRadioClassName}
+                    type={'radio'}
+                    name={name}
+                    value={o.id}
+                    checked={o.id === value}
+                    // name, checked, value делают студенты
 
-                      onChange={onChangeCallback}
-                      {...restProps}
-                  />
-                  <span
-                      id={id + '-span-' + o.id}
-                      {...spanProps}
-                      className={spanClassName}
-                  >
-                      {o.value}
-                  </span>
-              </label>
-          ))
+                    onChange={onChangeCallback}
+                    {...restProps}
+                />
+                <span
+                    id={id + '-span-' + o.id}
+                    {...spanProps}
+                    className={spanClassName}
+                >
+                    {o.value}
+                </span>
+            </label>
+        ))
         : []
 
     return <div className={s.options}>{mappedOptions}</div>
