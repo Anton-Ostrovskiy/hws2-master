@@ -38,19 +38,28 @@ const HW13 = () => {
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                setText(res.data.info)
-                setInfo('')
+                setText('...всё ок)')
+                setInfo('код 200 - обычно означает что скорее всего всё ок)')
                 // дописать
 
             })
             .catch((e) => {
                 // дописать
                 if(e.response.status === 400){
+                    setCode('Ошибка 400!')
                     setImage(error400)
+                    setText(e.response.data.errorText)
+                    setInfo(e.response.data.info );
                 } else if (e.response.status === 500){
+                    setCode('Ошибка 500!')
                     setImage(error500)
+                    setText(e.response.data.errorText );
+                    setInfo(e.response.data.info)
                 } else {
+                    setCode(`Ошибка ${e.response.status}!`)
                     setImage(errorUnknown)
+                    setText('')
+                    setInfo('Error')
                 }
             })
             .finally(()=>{
